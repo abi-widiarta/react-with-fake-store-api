@@ -1,10 +1,10 @@
-import axios from "axios";
 import Button from "../Elements/Button/Button";
 import InputForm from "../Elements/Input";
-import useLogin from "../../hooks/useLogin";
-import login from "../../services/auth.service";
+import { useState } from "react";
+import { login } from "../../services/auth.service";
 
 const LoginForm = () => {
+  const [loginFailed, setLoginFailed] = useState();
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -16,9 +16,9 @@ const LoginForm = () => {
     login(data, (status, response) => {
       if (status) {
         localStorage.setItem("token", response);
-        window.location.href = "/";
+        window.location.href = "/products";
       } else {
-        console.log(response);
+        setLoginFailed(response);
       }
     });
   };
@@ -30,6 +30,8 @@ const LoginForm = () => {
       <Button variantClass="bg-teal-500 hover:bg-teal-600 text-white mt-4" type="submit">
         Login
       </Button>
+
+      {loginFailed && <p className="text-red-500 font-medium mt-4 text-center">{loginFailed}</p>}
     </form>
   );
 };

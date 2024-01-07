@@ -1,14 +1,21 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { getUsername } from "../services/auth.service";
 
-const useLogin = (url, data, callback) => {
-  axios
-    .post(url, data)
-    .then(function (response) {
-      callback(true, response.data.token);
-    })
-    .catch(function (error) {
-      callback(false, error.response.data);
-    });
+const useLogin = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/login";
+    } else {
+      setUsername(getUsername(localStorage.getItem("token")));
+    }
+  }, []);
+
+  return username;
 };
+
+// const use
 
 export default useLogin;
