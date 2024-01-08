@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const useAuth = () => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      window.location.href = "/products";
+      history.push("/products");
     }
   }, []);
 };

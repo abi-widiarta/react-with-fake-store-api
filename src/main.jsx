@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import LoginPage from "./pages/login.jsx";
 import RegisterPage from "./pages/register.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import ProductsPage from "./pages/products.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <RouterProvider basename="https://659bb956b111702f8848d3d6--wondrous-panda-74cdac.netlify.app/" router={router}></RouterProvider>
     </Provider>
   </React.StrictMode>
 );
