@@ -7,7 +7,7 @@ const useLogin = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      history.push("/login");
+      window.location.href = "/login";
     } else {
       setUsername(getUsername(localStorage.getItem("token")));
     }
